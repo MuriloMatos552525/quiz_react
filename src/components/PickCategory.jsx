@@ -19,8 +19,9 @@ const PickCategory = () => {
     regulamento: false,
   });
 
-  // Estado para o modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // Estado para os modais
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isRegulationModalOpen, setIsRegulationModalOpen] = useState(false);
 
   function chooseCategoryAndReorderQuestions(category) {
     dispatch({ type: "START_GAME", payload: category });
@@ -115,7 +116,7 @@ const PickCategory = () => {
             Concordo com os{" "}
             <span
               style={{ color: "blue", cursor: "pointer" }}
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => setIsTermsModalOpen(true)}
             >
               Termos de Uso
             </span>{" "}
@@ -132,7 +133,14 @@ const PickCategory = () => {
         </div>
         <div className="form-group checkbox-group">
           <label htmlFor="regulamento">
-            Li e aceito o Regulamento da promoção
+            Li e aceito o{" "}
+            <span
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => setIsRegulationModalOpen(true)}
+            >
+              Regulamento
+            </span>{" "}
+            da promoção
           </label>
           <input
             type="checkbox"
@@ -157,7 +165,7 @@ const PickCategory = () => {
       ))}
 
       {/* Modal de Termos de Uso */}
-      {isModalOpen && (
+      {isTermsModalOpen && (
         <div className="modal">
           <div className="modal-content">
             <h2>Termos de Uso</h2>
@@ -165,7 +173,23 @@ const PickCategory = () => {
               Aqui estão os termos de uso detalhados da aplicação. Por favor,
               leia com atenção antes de aceitar.
             </p>
-            <button onClick={() => setIsModalOpen(false)}>Fechar</button>
+            <button onClick={() => setIsTermsModalOpen(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal do Regulamento */}
+      {isRegulationModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Regulamento</h2>
+            <p>
+              Este é o regulamento completo da promoção. Leia atentamente para
+              entender todos os detalhes e requisitos.
+            </p>
+            <button onClick={() => setIsRegulationModalOpen(false)}>
+              Fechar
+            </button>
           </div>
         </div>
       )}

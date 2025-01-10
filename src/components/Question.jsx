@@ -4,7 +4,10 @@ import { QuizContext } from "../context/quiz";
 
 import Option from "./Option";
 
+import Category from "../img/logo.png";
+
 import "./Question.css";
+import Quiz from "../img/logo.png";
 
 const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext);
@@ -41,9 +44,7 @@ const Question = () => {
           {currentQuestion.tip && (
             <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
           )}
-          <button onClick={() => dispatch({ type: "REMOVE_OPTION" })}>
-            Excluir uma
-          </button>
+          
         </>
       )}
       {!quizState.answerSelected && quizState.help === "tip" && (
@@ -51,7 +52,7 @@ const Question = () => {
       )}
       {quizState.answerSelected && (
         <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
-          Continuar
+          <h3>Continuar</h3>
         </button>
       )}
     </div>

@@ -2,19 +2,21 @@
   padding: 0;
   margin: 0;
   font-family: "Raleway", sans-serif;
-  color: #fff;
+  color: #00ad8e;
 }
 
 body,
 html {
   min-height: 100vh;
   height: 100%;
-  background-color: #1c1c1c;
+  background-color: #00ad8e;
 }
 
 img {
   max-width: 100%;
 }
+
+
 
 button {
   font-weight: bold;
@@ -23,8 +25,8 @@ button {
   padding: 0.8rem 1.5rem;
   background: linear-gradient(
     90deg,
-    rgba(132, 53, 222, 1) 0%,
-    rgba(184, 84, 232, 1) 100%
+    rgb(0, 119, 74) 0%,
+    rgb(0, 66, 61) 100%
   );
   border-radius: 3rem;
   border: none;
@@ -33,7 +35,7 @@ button {
 button:hover {
   background: linear-gradient(
     90deg,
-    rgba(184, 84, 232, 1) 0%,
-    rgba(132, 53, 222, 1) 100%
+    rgb(0, 65, 25) 0%,
+    rgb(0, 92, 66) 100%
   );
 }

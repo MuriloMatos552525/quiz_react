@@ -6,10 +6,16 @@
 #welcome h2,
 #welcome p {
   margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+#welcome h3,
+#welcome p {
+  color: #ffffff;
 }
 
 #welcome p {
-  color: #8435de;
+  color: #ffffff;
 }
 
 #welcome img {

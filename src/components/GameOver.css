@@ -1,20 +1,87 @@
 #gameover {
   text-align: center;
   max-width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-#gameover h2,
+#gameover h2 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
 #gameover p {
   margin-bottom: 1rem;
-}
-
-#gameover p {
   color: #ffffff;
 }
 
 #gameover img {
   margin: 2rem auto;
   height: 200px;
+}
+
+#gameover button {
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  background-color: #00ad8e;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  transition: 0.4s;
+}
+
+#gameover button:hover {
+  background-color: #007d68;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #gameover {
+    max-width: 90%;
+    padding: 1rem;
+  }
+
+  #gameover img {
+    height: 150px;
+  }
+
+  #gameover button {
+    width: 80%;
+    max-width: 300px;
+    margin: 0.5rem auto;
+  }
+}
+
+/* Tablet (entre 601px e 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  #gameover {
+    max-width: 70%;
+  }
+
+  #gameover img {
+    height: 180px;
+  }
+}
+
+/* TVs (a partir de 1920px) */
+@media (min-width: 1920px) {
+  #gameover {
+    max-width: 800px;
+  }
+
+  #gameover h2 {
+    font-size: 2rem;
+  }
+
+  #gameover img {
+    height: 300px;
+  }
+
+  #gameover button {
+    font-size: 1.2rem;
+    padding: 1.2rem 2.4rem;
+  }
 }

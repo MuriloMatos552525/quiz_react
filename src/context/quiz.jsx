@@ -13,8 +13,6 @@ const initialState = {
   optionToHide: null,
 };
 
-console.log(initialState);
-
 const quizReducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_STAGE":
@@ -23,9 +21,10 @@ const quizReducer = (state, action) => {
         gameStage: STAGES[1],
       };
 
-    case "START_GAME":
+    case "START_GAME": {
       let quizQuestions = null;
 
+      // Busca as questões da categoria selecionada
       state.questions.forEach((question) => {
         if (question.category === action.payload) {
           quizQuestions = question.questions;
@@ -37,8 +36,9 @@ const quizReducer = (state, action) => {
         questions: quizQuestions,
         gameStage: STAGES[2],
       };
+    }
 
-    case "REORDER_QUESTIONS":
+    case "REORDER_QUESTIONS": {
       const reorderedQuestions = state.questions.sort(() => {
         return Math.random() - 0.5;
       });
@@ -47,11 +47,13 @@ const quizReducer = (state, action) => {
         ...state,
         questions: reorderedQuestions,
       };
+    }
 
     case "CHANGE_QUESTION": {
       const nextQuestion = state.currentQuestion + 1;
       let endGame = false;
 
+      // Verifica se a próxima questão existe
       if (!state.questions[nextQuestion]) {
         endGame = true;
       }
@@ -65,17 +67,15 @@ const quizReducer = (state, action) => {
       };
     }
 
-    case "NEW_GAME": {
-      console.log(questions);
-      console.log(initialState);
+    case "NEW_GAME":
+      // Reinicia para o estado inicial
       return initialState;
-    }
 
     case "CHECK_ANSWER": {
+      // Se já foi selecionada alguma resposta, não faz nada
       if (state.answerSelected) return state;
 
-      const answer = action.payload.answer;
-      const option = action.payload.option;
+      const { answer, option } = action.payload;
       let correctAnswer = 0;
 
       if (answer === option) correctAnswer = 1;
@@ -97,16 +97,12 @@ const quizReducer = (state, action) => {
     case "REMOVE_OPTION": {
       const questionWithoutOption = state.questions[state.currentQuestion];
 
-      console.log(state.currentQuestion);
-
-      console.log(questionWithoutOption);
-
       let repeat = true;
       let optionToHide;
 
-      questionWithoutOption.options.forEach((option) => {
-        if (option !== questionWithoutOption.answer && repeat) {
-          optionToHide = option;
+      questionWithoutOption.options.forEach((opt) => {
+        if (opt !== questionWithoutOption.answer && repeat) {
+          optionToHide = opt;
           repeat = false;
         }
       });
@@ -127,6 +123,5 @@ export const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
   const value = useReducer(quizReducer, initialState);
-
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 };

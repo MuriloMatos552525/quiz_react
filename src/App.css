@@ -10,3 +10,22 @@
 .App h1 {
   margin-bottom: 2rem;
 }
+
+/* Tablet (entre 601px e 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .App {
+    padding-top: 2rem;
+  }
+
+  .App h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* TVs ou telas muito grandes (a partir de 1920px) */
+@media (min-width: 1920px) {
+  .App h1 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+}

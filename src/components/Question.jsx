@@ -1,13 +1,8 @@
-import { useContext, useState } from "react";
-
+import { useContext } from "react";
 import { QuizContext } from "../context/quiz";
-
 import Option from "./Option";
 
-import Category from "../img/logo.png";
-
 import "./Question.css";
-import Quiz from "../img/logo.png";
 
 const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext);
@@ -19,8 +14,6 @@ const Question = () => {
       payload: { answer: currentQuestion.answer, option },
     });
   };
-
-  console.log(quizState.optionToHide);
 
   return (
     <div id="question">
@@ -39,17 +32,18 @@ const Question = () => {
           />
         ))}
       </div>
-      {!quizState.answerSelected && !quizState.help && (
-        <>
-          {currentQuestion.tip && (
-            <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
-          )}
-          
-        </>
+
+      {/* Botão para dica, se disponível e ainda não foi selecionada resposta */}
+      {!quizState.answerSelected && !quizState.help && currentQuestion.tip && (
+        <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
       )}
+
+      {/* Exibição da dica */}
       {!quizState.answerSelected && quizState.help === "tip" && (
-        <p>{currentQuestion.tip}</p>
+        <p className="tip">{currentQuestion.tip}</p>
       )}
+
+      {/* Botão para ir para a próxima pergunta, se a resposta já foi selecionada */}
       {quizState.answerSelected && (
         <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
           <h3>Continuar</h3>

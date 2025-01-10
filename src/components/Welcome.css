@@ -1,23 +1,149 @@
+/* 
+  Sugestão de fundo global (pode ser colocada no body ou App.css): 
+  body {
+    background: linear-gradient(135deg, #0062cc, #00ad8e);
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+  }
+*/
+
 #welcome {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  /* Ajuste opcional se quiser ocupar toda a tela:
+   min-height: 100vh;
+  */
+}
+
+/* Container principal */
+.welcome-container {
+  background-color: rgba(255, 255, 255, 0.09); /* Transparência leve */
+  backdrop-filter: blur(8px); /* Efeito de vidro fosco */
+  border-radius: 1rem;
+  padding: 2rem 3rem;
   max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-#welcome h2,
-#welcome p {
-  margin-bottom: 1rem;
+/* Título e texto */
+.welcome-container h2 {
+  margin-bottom: 0.5rem;
   color: #ffffff;
+  font-size: 1.8rem;
 }
 
-#welcome h3,
-#welcome p {
+.subtitle {
+  margin-bottom: 2rem;
   color: #ffffff;
+  font-style: italic;
+  opacity: 0.9;
 }
 
-#welcome p {
-  color: #ffffff;
+/* Botão de início */
+.btn-start {
+  background-color: #00ad8e;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#welcome img {
+.btn-start:hover {
+  background-color: #008c72;
+  transform: scale(1.05);
+}
+
+/* Imagem */
+.welcome-container img {
   margin-top: 2rem;
+  height: 150px;
+  transition: transform 0.3s;
+}
+
+.welcome-container img:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* 
+  =========================
+       Responsividade
+  =========================
+*/
+
+/* Mobile (até 600px) */
+@media (max-width: 600px) {
+  .welcome-container {
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+
+  .welcome-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn-start {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .welcome-container img {
+    height: 120px;
+  }
+}
+
+/* Tablet (601px a 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .welcome-container {
+    max-width: 80%;
+  }
+
+  .welcome-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+  }
+
+  .welcome-container img {
+    height: 140px;
+  }
+}
+
+/* TVs e grandes telas (a partir de 1920px) */
+@media (min-width: 1920px) {
+  .welcome-container {
+    max-width: 900px;
+    padding: 3rem 4rem;
+  }
+
+  .welcome-container h2 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .btn-start {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .welcome-container img {
+    height: 200px;
+  }
 }

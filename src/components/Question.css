@@ -3,27 +3,98 @@
   border-radius: 1rem;
   padding: 2rem;
   width: 500px;
-}
-
-#question h3,
-#question p {
-  color: #ffffff;
-}
-
-#category img {
-  height: 200px;
-  margin-top: 2rem auto;
+  margin: 0 auto;
 }
 
 #question p {
   margin-bottom: 1rem;
+  color: #333;
 }
 
 #question h2 {
   margin-bottom: 2rem;
+  color: #333;
+}
+
+#options-container {
+  margin-bottom: 1rem;
 }
 
 #question button {
   border: 2px solid #a9a9a9;
   margin: 1rem;
+  background-color: transparent;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+#question button:hover {
+  background-color: #a9a9a9;
+  color: #fff;
+}
+
+/* Estilo para a dica */
+.tip {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #question {
+    width: 90%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
+
+  #question button {
+    margin: 0.5rem;
+    width: 80%;
+    max-width: 300px;
+  }
+
+  #question h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  #question p {
+    font-size: 1rem;
+  }
+
+  .tip {
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablet (entre 601px e 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  #question {
+    width: 70%;
+    padding: 1.5rem;
+  }
+
+  #question h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* TVs (a partir de 1920px) */
+@media (min-width: 1920px) {
+  #question {
+    width: 600px;
+    padding: 3rem;
+  }
+
+  #question h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  #question button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+  }
 }

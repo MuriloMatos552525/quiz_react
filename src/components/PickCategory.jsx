@@ -19,6 +19,9 @@ const PickCategory = () => {
     regulamento: false,
   });
 
+  // Estado para o modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   function chooseCategoryAndReorderQuestions(category) {
     dispatch({ type: "START_GAME", payload: category });
     dispatch({ type: "REORDER_QUESTIONS" });
@@ -108,11 +111,16 @@ const PickCategory = () => {
           />
         </div>
         <div className="form-group checkbox-group">
-        <label htmlFor="termosUso">
-            Concordo com os Termos de Uso e estou ciente do tratamento e
-            privacidade de meus dados
+          <label htmlFor="termosUso">
+            Concordo com os{" "}
+            <span
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => setIsModalOpen(true)}
+            >
+              Termos de Uso
+            </span>{" "}
+            e estou ciente do tratamento e privacidade de meus dados
           </label>
-          
           <input
             type="checkbox"
             id="termosUso"
@@ -121,13 +129,11 @@ const PickCategory = () => {
             onChange={handleChange}
             required
           />
-         
         </div>
         <div className="form-group checkbox-group">
-        <label htmlFor="regulamento">
+          <label htmlFor="regulamento">
             Li e aceito o Regulamento da promoção
           </label>
-
           <input
             type="checkbox"
             id="regulamento"
@@ -136,7 +142,6 @@ const PickCategory = () => {
             onChange={handleChange}
             required
           />
-          
         </div>
         <button type="submit" className="btn-submit">
           Enviar
@@ -150,6 +155,20 @@ const PickCategory = () => {
           {question.category}
         </button>
       ))}
+
+      {/* Modal de Termos de Uso */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Termos de Uso</h2>
+            <p>
+              Aqui estão os termos de uso detalhados da aplicação. Por favor,
+              leia com atenção antes de aceitar.
+            </p>
+            <button onClick={() => setIsModalOpen(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

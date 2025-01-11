@@ -1,10 +1,20 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
-  padding-top: 3rem;
+  /* Ocupar toda a tela e centralizar vertical/horizontalmente */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  /* centralizar texto */
+  text-align: center;
 }
 
 .App h1 {
@@ -13,10 +23,6 @@
 
 /* Tablet (entre 601px e 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
-  .App {
-    padding-top: 2rem;
-  }
-
   .App h1 {
     font-size: 1.8rem;
   }

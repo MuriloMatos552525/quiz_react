@@ -1,115 +1,131 @@
-/* Layout geral */
-#category {
+/* 
+  1) Fundo verde ocupando a tela toda
+  com o container branco no centro
+*/
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #008b64; /* Ajuste para o tom de verde desejado */
+  font-family: sans-serif;
+}
+
+/* 
+  2) Container principal que centraliza o card
+*/
+#cadastro-screen {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
 }
 
-/* Container com fundo simples e borda arredondada */
-.pick-container {
+/* 
+  3) O card branco arredondado
+*/
+.card-container {
   background-color: #ffffff;
-  border-radius: 0.8rem;
-  padding: 1.5rem;
-  max-width: 500px;
-  width: 100%;
+  border-radius: 2rem; /* Cantos bem arredondados */
+  width: 90%;
+  max-width: 400px;
+  padding: 2rem;
+  text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagem (logo) */
-.quiz-image {
+/*
+  4) Logo e (opcional) subtítulo
+*/
+.amo-logo {
   width: 120px;
-  height: auto;
-  margin: 0 auto 1rem;
-  display: block;
+  margin-bottom: 0.3rem;
 }
 
-/* Título e subtítulo */
-#category h1 {
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 1.4rem;
+.amo-subtitle {
+  margin: 0;
+  font-weight: bold;
+  color: #008b64;
 }
 
-.subtitle {
-  color: #666;
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.4;
+/*
+  5) Título CADASTRO
+*/
+.card-container h1 {
+  margin: 1.2rem 0 2rem;
+  font-size: 2rem;
+  color: #00ad8e; /* Um verde mais claro */
 }
 
-/* Formulário */
-#category form {
+/*
+  6) Formulário
+*/
+.cadastro-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
-/* Grupo de formulário */
-.form-group {
-  margin-bottom: 1rem;
-  width: 100%;
-  text-align: left;
-}
-
-/* Label */
-.form-group label {
-  display: block;
-  color: #333;
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-/* Input */
-.form-group input {
-  width: 100%;
-  padding: 0.65rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.95rem;
-}
-
-/* Foco no input */
-.form-group input:focus {
-  border-color: #007BFF;
+/*
+  Inputs em formato “pill” (borda 9999px),
+  fundo verde, texto branco
+*/
+.cadastro-form input {
+  border: none;
+  border-radius: 50px; 
+  padding: 1rem;
+  background-color: #00ad8e;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
   outline: none;
 }
 
-/* Checkboxes */
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
+.cadastro-form input::placeholder {
+  color: #ffffff;
+  opacity: 0.8;
 }
 
-.termos-link {
-  color: #007BFF;
+/* 
+  7) Checkbox e label
+*/
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  color: #333;
+}
+
+.checkbox-group span {
+  color: #007bff;
   text-decoration: underline;
   cursor: pointer;
 }
 
-/* Botão "Enviar" */
+/*
+  8) Botão de envio
+*/
 .btn-submit {
-  margin-top: 1rem;
-  padding: 0.65rem 1.5rem;
-  background-color: #007BFF;
-  color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px;
+  background-color: #00ad8e;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 1rem 2rem;
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: background-color 0.3s;
+  margin-top: 1rem;
 }
 
 .btn-submit:hover {
-  background-color: #0056b3;
+  background-color: #008f70;
 }
 
-/* Botões das categorias */
+/*
+  9) Botões de categoria (quiz)
+*/
 .quiz-buttons button {
   margin: 0.5rem;
   padding: 0.6rem 1.2rem;
@@ -126,14 +142,16 @@
   color: #ffffff;
 }
 
-/* Modal */
+/*
+  10) Modal de termos 
+*/
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,7 +159,7 @@
 }
 
 .modal-content {
-  background-color: #fff;
+  background: #fff;
   padding: 1.5rem;
   border-radius: 8px;
   text-align: center;
@@ -149,108 +167,46 @@
   width: 80%;
 }
 
-.modal-content h2 {
-  margin-top: 0;
-}
-
-.modal-content p {
-  margin: 1rem 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.modal-content button {
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 /*
-  =========================
-    RESPONSIVIDADE
-  =========================
+  =====================
+       RESPONSIVO
+  =====================
 */
-
-/* Mobile: até 600px */
 @media (max-width: 600px) {
-  #category {
-    padding: 1rem;
+  .card-container {
+    border-radius: 1rem;
+    padding: 1.5rem;
   }
 
-  .pick-container {
-    padding: 1rem;
-    max-width: 100%;
-    border-radius: 0.5rem;
+  .card-container h1 {
+    font-size: 1.6rem;
+    margin: 1rem 0 1.5rem;
   }
 
-  .quiz-image {
-    width: 90px;
-    margin-bottom: 0.8rem;
-  }
-
-  #category h1 {
-    font-size: 1.2rem;
-  }
-
-  .subtitle {
-    font-size: 0.85rem;
-  }
-
-  .form-group label {
-    font-size: 0.85rem;
-  }
-
-  .form-group input {
-    font-size: 0.9rem;
-  }
-
-  .btn-submit {
-    font-size: 0.85rem;
-    padding: 0.6rem 1rem;
-  }
-
-  .quiz-buttons button {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+  .cadastro-form input {
+    font-size: 0.95rem;
+    padding: 0.8rem;
   }
 }
 
-/* Tablet: 601px a 1024px */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .pick-container {
-    max-width: 80%;
-  }
-}
-
-/* TVs: a partir de 1920px */
 @media (min-width: 1920px) {
-  .pick-container {
-    max-width: 800px;
-    padding: 2rem;
+  .card-container {
+    max-width: 500px;
+    padding: 3rem;
   }
 
-  .quiz-image {
-    width: 150px;
+  .card-container h1 {
+    font-size: 3rem;
+    margin: 1rem 0 2.5rem;
   }
 
-  #category h1 {
-    font-size: 2rem;
-  }
-
-  .subtitle {
+  .cadastro-form input {
     font-size: 1.2rem;
-  }
-
-  .form-group input {
-    font-size: 1.1rem;
+    padding: 1.2rem;
   }
 
   .btn-submit {
-    font-size: 1.1rem;
-    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
   }
 }

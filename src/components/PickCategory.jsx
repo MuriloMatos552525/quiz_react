@@ -33,14 +33,94 @@ const PickCategory = () => {
     dispatch({ type: "REORDER_QUESTIONS" });
   }
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+  // -----------------------------
+  //  HANDLERS DE MÁSCARA MANUAL
+  // -----------------------------
+
+  // Telefone: formato (99) 99999-9999
+  const handlePhoneChange = (e) => {
+    let value = e.target.value;
+
+    // Remove tudo que não for dígito
+    value = value.replace(/\D/g, "");
+
+    // Limita a 11 dígitos
+    if (value.length > 11) {
+      value = value.slice(0, 11);
+    }
+
+    // Insere a máscara passo a passo
+    // Exemplo de fluxo para "21987654321":
+    // => "(" + "21987654321"
+    // => "(21) 987654321"
+    // => "(21) 98765-4321"
+    let maskedValue = value;
+
+    // Adiciona parênteses iniciais se houver ao menos 1 dígito
+    if (maskedValue.length > 0) {
+      maskedValue = "(" + maskedValue;
+    }
+    // Se houver ao menos 3 dígitos, fecha parênteses e adiciona espaço
+    if (maskedValue.length > 3) {
+      maskedValue = maskedValue.slice(0, 3) + ") " + maskedValue.slice(3);
+    }
+    // Se houver ao menos 9 dígitos (3 DDD + 5 celular), adiciona hífen
+    if (maskedValue.length > 9) {
+      maskedValue = maskedValue.slice(0, 9) + "-" + maskedValue.slice(9);
+    }
+
+    setFormData((prev) => ({ ...prev, telefone: maskedValue }));
   };
 
+  // CPF: formato 000.000.000-00
+  const handleCpfChange = (e) => {
+    let value = e.target.value;
+
+    // Remove tudo que não for dígito
+    value = value.replace(/\D/g, "");
+
+    // Limita a 11 dígitos
+    if (value.length > 11) {
+      value = value.slice(0, 11);
+    }
+
+    // Insere a máscara passo a passo
+    // Exemplo para "12345678901"
+    // => "123.456.789-01"
+    let maskedValue = value;
+
+    // Após 3 dígitos, insere ponto
+    if (maskedValue.length > 3) {
+      maskedValue = maskedValue.slice(0, 3) + "." + maskedValue.slice(3);
+    }
+    // Após 6 dígitos, insere outro ponto
+    if (maskedValue.length > 7) {
+      maskedValue = maskedValue.slice(0, 7) + "." + maskedValue.slice(7);
+    }
+    // Após 9 dígitos, insere hífen
+    if (maskedValue.length > 11) {
+      maskedValue = maskedValue.slice(0, 11) + "-" + maskedValue.slice(11);
+    }
+
+    // Obs.: se o usuário já tiver, por ex., 9 dígitos, ele adiciona ponto e hífen corretamente
+
+    setFormData((prev) => ({ ...prev, cpf: maskedValue }));
+  };
+
+  // Demais campos (nome, email, data) seguem a lógica genérica
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    // Se o campo for checkbox, pega o checked; caso contrário, o value
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  // -----------------------------
+  //  HANDLE SUBMIT
+  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,113 +149,83 @@ const PickCategory = () => {
   };
 
   return (
-    <div id="category">
-      <div className="pick-container">
-        <img src={Category} alt="Logo" className="quiz-image" />
-        <h1>Preencha o formulário</h1>
-        <p className="subtitle">
-          Participe e descubra o quanto você sabe!
-        </p>
+    <div id="cadastro-screen">
+      {/* Container branco arredondado */}
+      <div className="card-container">
+        {/* Exibe somente a logo, sem texto abaixo */}
+        <img src={Category} alt="Logo" className="amo-logo" />
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Nome:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Digite seu nome"
-              required
-            />
-          </div>
+        <h1>CADASTRO</h1>
 
-          <div className="form-group">
-            <label htmlFor="telefone">Telefone:</label>
-            <input
-              type="text"
-              id="telefone"
-              name="telefone"
-              value={formData.telefone}
-              onChange={handleChange}
-              placeholder="Digite seu telefone"
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="cadastro-form">
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Nome"
+            required
+          />
 
-          <div className="form-group">
-            <label htmlFor="email">E-mail:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Digite seu e-mail"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="telefone"
+            value={formData.telefone}
+            onChange={handlePhoneChange}
+            placeholder="(99) 99999-9999"
+            required
+          />
 
-          <div className="form-group">
-            <label htmlFor="age">Idade:</label>
-            <input
-              type="number"
-              id="age"
-              name="age"
-              value={formData.age}
-              onChange={handleChange}
-              placeholder="Digite sua idade"
-              required
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="E-mail"
+            required
+          />
 
-          <div className="form-group">
-            <label htmlFor="cpf">CPF:</label>
-            <input
-              type="text"
-              id="cpf"
-              name="cpf"
-              value={formData.cpf}
-              onChange={handleChange}
-              placeholder="Digite seu CPF"
-              required
-            />
-          </div>
+          <input
+            type="date"
+            name="age"
+            value={formData.age}
+            onChange={handleChange}
+            placeholder="Data de Nascimento"
+            required
+          />
 
-          <div className="form-group checkbox-group">
-            <label htmlFor="termosUso">
-              Concordo com os{" "}
-              <span 
-                className="termos-link"
-                onClick={() => setIsModalOpen(true)}
-              >
-                Termos de Uso
-              </span>{" "}
-              e estou ciente do tratamento e privacidade de meus dados
+          <input
+            type="text"
+            name="cpf"
+            value={formData.cpf}
+            onChange={handleCpfChange}
+            placeholder="000.000.000-00"
+            required
+          />
+
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="termosUso"
+                checked={formData.termosUso}
+                onChange={handleChange}
+              />{" "}
+              Aceito os{" "}
+              <span onClick={() => setIsModalOpen(true)}>Termos de Uso</span>
             </label>
-            <input
-              type="checkbox"
-              id="termosUso"
-              name="termosUso"
-              checked={formData.termosUso}
-              onChange={handleChange}
-              required
-            />
           </div>
 
-          <div className="form-group checkbox-group">
-            <label htmlFor="regulamento">
-              Li e aceito o Regulamento da promoção
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="regulamento"
+                checked={formData.regulamento}
+                onChange={handleChange}
+              />{" "}
+              Aceito o Regulamento da promoção
             </label>
-            <input
-              type="checkbox"
-              id="regulamento"
-              name="regulamento"
-              checked={formData.regulamento}
-              onChange={handleChange}
-              required
-            />
           </div>
 
           <button type="submit" className="btn-submit">
@@ -200,10 +250,7 @@ const PickCategory = () => {
           <div className="modal">
             <div className="modal-content">
               <h2>Termos de Uso</h2>
-              <p>
-                Aqui estão os termos de uso detalhados da aplicação. Leia com
-                atenção antes de aceitar.
-              </p>
+              <p>Texto dos termos de uso...</p>
               <button onClick={() => setIsModalOpen(false)}>Fechar</button>
             </div>
           </div>

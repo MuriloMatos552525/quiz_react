@@ -1,56 +1,66 @@
 .option {
-  background-color: #00ad8e;
-  border-radius: 0.5rem;
-  padding: 1rem;
+  background-color: #00ad8e; /* Tom de verde para as opções */
+  border-radius: 2rem;       /* Deixa as bordas bem arredondadas */
+  padding: 1rem 1.5rem;
   margin-bottom: 1rem;
   cursor: pointer;
-  opacity: 0.8;
-  transition: 0.4s;
+  /* Se quiser suavizar um pouco a cor inicial, use algo como opacity ou lighten */
+  transition: 0.3s;
+  /* Remova bordas se quiser um visual mais “limpo” */
+  border: none;
+  text-align: center;
 }
 
-.option:hover {
-  opacity: 1;
-}
-
+/* Texto branco */
 .option p {
-  margin-bottom: 0;
+  margin: 0;
   color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
+/* Efeito de hover */
+.option:hover {
+  transform: scale(1.03);
+  background-color: #008c72;
+}
+
+/* Quando a resposta é correta ou errada, pode trocar cores se desejar */
 .correct {
-  background-color: #0bfc03;
-  font-weight: bold;
+  background-color: #008c72 !important;
 }
 
 .wrong {
-  background-color: #ff5555;
-  font-weight: bold;
+  background-color: #2b2b2b !important;
 }
 
 .hide {
   display: none;
 }
 
+/* =========== RESPONSIVIDADE =========== */
+
 /* Mobile */
 @media (max-width: 600px) {
   .option {
-    padding: 0.8rem;
+    padding: 1rem;
     margin-bottom: 0.8rem;
+    font-size: 1rem;
   }
 }
 
 /* Tablet (entre 601px e 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
   .option {
-    padding: 1rem;
-    margin-bottom: 1rem;
+    padding: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
 /* TVs (a partir de 1920px) */
 @media (min-width: 1920px) {
   .option {
-    padding: 1.5rem;
-    font-size: 1.1rem;
+    padding: 1.5rem 2rem;
+    font-size: 1.3rem;
   }
 }

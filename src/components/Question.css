@@ -1,36 +1,57 @@
+/* Fundo verde ocupando toda a tela */
 #question {
-  background-color: #ffffff;
-  border-radius: 1rem;
+  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
-  width: 500px;
-  margin: 0 auto;
+  margin: 0;
 }
 
-#question p {
-  margin-bottom: 1rem;
+/* Cartão branco arredondado */
+.question-card {
+  background-color: #ffffff;
+  border-radius: 2rem;
+  width: 90%;
+  max-width: 500px; /* Ajuste conforme desejar */
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Contador de perguntas (caso deixe visível) */
+.question-count {
+  margin: 0 0 1rem;
   color: #333;
+  font-weight: bold;
 }
 
-#question h2 {
+/* Texto da pergunta em verde, maior */
+.question-text {
+  color: #008C72;  /* Mesma cor do fundo para manter o padrão da marca */
+  font-size: 1.6rem;
   margin-bottom: 2rem;
-  color: #333;
 }
 
+/* Container das opções */
 #options-container {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
-#question button {
-  border: 2px solid #a9a9a9;
-  margin: 1rem;
+/* Botões (Dica e Próximo) */
+.btn-hint,
+.btn-next {
   background-color: transparent;
+  border: 2px solid #a9a9a9;
   color: #333;
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 4px;
+  margin: 0.5rem;
 }
 
-#question button:hover {
+.btn-hint:hover,
+.btn-next:hover {
   background-color: #a9a9a9;
   color: #fff;
 }
@@ -39,61 +60,49 @@
 .tip {
   color: #ff0000;
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-/* Mobile */
+/* =========== RESPONSIVIDADE =========== */
 @media (max-width: 600px) {
-  #question {
-    width: 90%;
+  .question-card {
     padding: 1rem;
-    margin: 0.5rem auto;
   }
 
-  #question button {
-    margin: 0.5rem;
-    width: 80%;
-    max-width: 300px;
-  }
-
-  #question h2 {
+  .question-text {
     font-size: 1.2rem;
-    margin-bottom: 1rem;
   }
 
-  #question p {
-    font-size: 1rem;
-  }
-
-  .tip {
-    font-size: 0.95rem;
+  .btn-hint,
+  .btn-next {
+    width: 100%;
+    margin: 0.5rem 0;
   }
 }
 
-/* Tablet (entre 601px e 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
-  #question {
-    width: 70%;
-    padding: 1.5rem;
+  .question-card {
+    padding: 2rem;
+    max-width: 600px;
   }
 
-  #question h2 {
+  .question-text {
     font-size: 1.4rem;
   }
 }
 
-/* TVs (a partir de 1920px) */
 @media (min-width: 1920px) {
-  #question {
-    width: 600px;
+  .question-card {
+    max-width: 700px;
     padding: 3rem;
   }
 
-  #question h2 {
+  .question-text {
     font-size: 2rem;
-    margin-bottom: 2rem;
   }
 
-  #question button {
+  .btn-hint,
+  .btn-next {
     font-size: 1.2rem;
     padding: 0.8rem 2rem;
   }

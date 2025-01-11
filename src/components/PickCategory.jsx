@@ -138,7 +138,7 @@ const PickCategory = () => {
       });
 
       console.log("Dados do usuário registrados com ID:", docRef.id);
-      alert("Formulário enviado com sucesso!");
+      //alert("Formulário enviado com sucesso!");
 
       // Marca que o formulário foi submetido
       setIsFormSubmitted(true);

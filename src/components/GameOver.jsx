@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { QuizContext } from "../context/quiz";
 
-import WellDone from "../img/logo.png";
+import WellDone from "../img/cartela-amo_web.png";
 import "./GameOver.css";
 
 const GameOver = () => {
